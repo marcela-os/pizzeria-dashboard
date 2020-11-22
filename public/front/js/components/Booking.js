@@ -233,11 +233,11 @@ class Booking {
       },
       body: JSON.stringify(payload),
     };
-    
+
     fetch (url, options)
       .then(function(response){
         return response.json();
-      }) .then(function(parsedResponse){
+      }).then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
         thisBooking.makeBooked(payload.date, payload.hour, payload.table, payload.duration);
       });

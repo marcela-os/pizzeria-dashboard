@@ -1,3 +1,4 @@
+/*eslint no-restricted-globals: [0, "event"]*/
 import {select} from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 

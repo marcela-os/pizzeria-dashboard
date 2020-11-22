@@ -33,7 +33,7 @@ class Cart{
     thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
   }
-  initActions(){
+  initActions(event){
     const thisCart = this;
 
     thisCart.dom.toggleTrigger.addEventListener('click' , function() {
@@ -89,7 +89,7 @@ class Cart{
   }
   remove(cartProduct){
     const thisCart = this;
-    const index = thisCart.products.indexOf('cartProduct');
+    //const index = thisCart.products.indexOf('cartProduct');
     thisCart.products.splice(CartProduct, 1);
     cartProduct.dom.wrapper.remove();
 
@@ -119,11 +119,11 @@ class Cart{
       },
       body: JSON.stringify(payload),
     };
-    
+
     fetch (url, options)
       .then(function(response){
         return response.json();
-      }) .then(function(parsedResponse){
+      }).then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
       });
   }

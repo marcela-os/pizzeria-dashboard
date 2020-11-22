@@ -1,3 +1,4 @@
+/*eslint no-restricted-globals: [0, "event"]*/
 import {settings, select} from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 

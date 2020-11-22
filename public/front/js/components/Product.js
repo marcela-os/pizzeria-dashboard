@@ -1,3 +1,6 @@
+
+/*eslint no-restricted-globals: [0, "event"]*/
+
 import {select, classNames, templates} from '../settings.js';
 import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
@@ -93,7 +96,7 @@ class Product{
       for (let optionId in param.options) {
         const option = param.options[optionId];
         //co robi ta const? - sprawdzamy, czy istnieje formData[paramId], a jeśli tak, to czy ta tablica zawiera klucz równy wartości optionId
-        const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+        const optionSelected = {}.hasOwnProperty.call(formData, paramId) && formData[paramId].indexOf(optionId) > -1;
         //jesli opcja jest wybrana i opcja nie jest domyślna
         if(optionSelected && !option.default){
           price += option.price; // add price

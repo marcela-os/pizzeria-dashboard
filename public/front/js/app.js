@@ -122,7 +122,7 @@ const app = {
     const thisApp = this;
 
     const carouselElement = document.querySelector(select.carousel.element);
-    thisApp.carousel = new Carousel();
+    thisApp.carousel = new Carousel(carouselElement);
     //console.log('testApp', carouselElement);
   },
 
