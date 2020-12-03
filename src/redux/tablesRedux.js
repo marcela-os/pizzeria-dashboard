@@ -13,11 +13,13 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const STATUS_UPDATE = createActionName('STATS_UPDATE');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const statusUpdated = payload => ({ payload, type: STATUS_UPDATE});
 
 /* thunk creators */
 export const fetchFromAPI = () => {
@@ -31,6 +33,17 @@ export const fetchFromAPI = () => {
       })
       .catch(err => {
         dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
+export const statusFromAPI = () => {
+  return (dispatch, getState) => {
+
+		Axios
+      .post(`${api.url}/${api.tables}`)
+      .then(res => {
+        dispatch(statusUpdated(res.data));
       });
   };
 };
@@ -66,6 +79,12 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
     }
+		case STATUS_UPDATE: {
+			return {
+				...statePart,
+				data: statePart.data.map (order => order.id),
+      };
+		}
     default:
       return statePart;
   }
