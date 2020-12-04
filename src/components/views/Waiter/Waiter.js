@@ -17,7 +17,7 @@ class Waiter extends React.Component {
       error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
     }),
 		tables: PropTypes.oneOfType([PropTypes.array,PropTypes.object]),
-		updateTables: PropTypes.func,
+		updateTables: PropTypes.func.isRequired,
   }
 
   componentDidMount(){
@@ -63,6 +63,8 @@ class Waiter extends React.Component {
   render() {
     const { loading: { active, error }, tables } = this.props;
 
+		console.log(tables, active);
+
     if(active || !tables.length){
       return (
         <Paper className={styles.component}>
@@ -105,7 +107,7 @@ class Waiter extends React.Component {
                     )}
                   </TableCell>
                   <TableCell>
-                    {this.renderActions(row.status)}
+                    {this.renderActions(row.status, row.id)}
                   </TableCell>
                 </TableRow>
               ))}

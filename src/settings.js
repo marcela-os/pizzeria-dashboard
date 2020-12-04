@@ -1,5 +1,5 @@
 export const api = {
-  url: '//' + window.location.hostname + (window.location.hostname === 'localhost' ? ':3131' : ''),
+  url: '//' + window.location.hostname + (window.location.hostname === 'localhost' ? ':3131' : ''),  //lub ':3131/api' jeśli nie dodam w thunk creators w tablesRedux /api/
   tables: 'tables',
   products: 'products',
   order: 'order',

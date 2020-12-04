@@ -27,7 +27,7 @@ export const fetchFromAPI = () => {
     dispatch(fetchStarted());
 
     Axios
-      .get(`${api.url}/${api.tables}`)
+      .get(`${api.url}/api/${api.tables}`)
       .then(res => {
         dispatch(fetchSuccess(res.data));
       })
@@ -37,13 +37,21 @@ export const fetchFromAPI = () => {
   };
 };
 
-export const statusFromAPI = () => {
-  return (dispatch, getState) => {
+export const statusFromAPI = (id, status) => {
+	return (dispatch, getState) => {
+    dispatch(fetchStarted());
 
-		Axios
-      .post(`${api.url}/${api.tables}`)
+    Axios
+      .put(`${api.url}/api/${api.tables}/${id}`, {  //.put-uaktalnia/modyfikuje już istniejący wpis w bazie  .post-służy do dodawania nowych danych; musi być dodany parametr /api/ albo w url w settings.js
+				status: status,
+			}, {headers: {
+				'Content-Type': 'application/json',
+			}},)
       .then(res => {
         dispatch(statusUpdated(res.data));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
       });
   };
 };
@@ -82,7 +90,11 @@ export default function reducer(statePart = [], action = {}) {
 		case STATUS_UPDATE: {
 			return {
 				...statePart,
-				data: statePart.data.map (order => order.id),
+				data: statePart.data.map (order => order.id === action.payload.id ? {...order, status: action.payload.status} : order), // sprawdzamy czy w tej tablicy jest jakiś element który zawiera id, z elementów które są na serwerze, jeśli jest prawdziwy to aktualizujemy stats jesli nie to zwróć co było
+				loading: {
+          active: false,
+          error: false,
+        },
       };
 		}
     default:

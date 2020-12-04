@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTables: () => dispatch(fetchFromAPI()),
-	updateTables: () => dispatch(statusFromAPI()),
+	updateTables: (id, status) => dispatch(statusFromAPI(id, status)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Waiter);
