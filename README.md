@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="dashboard.png" title="dashboard" alt="dashboard"></a>
+<img src="./dashboard.PNG" title="dashboard" alt="dashboard"></a>
 </p>
 <br>
   
