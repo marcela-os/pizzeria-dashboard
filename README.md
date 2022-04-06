@@ -9,7 +9,7 @@
 Restaurant management project using database, React, Redux, working with API and Material Design.
 It is an administrative panel of a pizzeria that offers views of login, tables, waiter, kitchen. In the application, it is possible to change the status of tables, create and edit orders, and handle orders by the kitchen.
 
-[:sparkles: Published version](https://marcela-os.github.io/pizzeria-dashboard/kitchen)
+[:sparkles: Published version](https://marcela-os.github.io/pizzeria-dashboard/)
 - if the page does not load, wait a moment
 
 ## Tech Stack
